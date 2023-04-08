@@ -33,7 +33,7 @@ public:
 	void setEffRating();
 	void setValue();
 
-	char getPlayerType()
+	char getPlayerType();
 
 	void print();
 };
