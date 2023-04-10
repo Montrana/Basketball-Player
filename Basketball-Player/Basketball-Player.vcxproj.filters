@@ -42,4 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="playerStatsPRO.csv">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="playerStatsNCAA.csv">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

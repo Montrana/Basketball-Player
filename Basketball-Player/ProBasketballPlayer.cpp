@@ -40,7 +40,34 @@ void ProBasketballPlayer::setPosition(string pos_)
 }
 void ProBasketballPlayer::setContractValue()
 {
-
+    if (value >= 10)
+    {
+        contractValue = 12000000;
+    }
+    else if (value >= 9)
+    {
+        contractValue = 10000000;
+    }
+    else if (value >= 8)
+    {
+        contractValue = 7500000;
+    }
+    else if (value >= 7)
+    {
+        contractValue = 6000000;
+    }
+    else if (value >= 5)
+    {
+        contractValue = 5000000;
+    }
+    else if (value >= 3)
+    {
+        contractValue = 2500000;
+    }
+    else 
+    {
+        contractValue = 500000;
+    }
 }
 
 int ProBasketballPlayer::getYears()

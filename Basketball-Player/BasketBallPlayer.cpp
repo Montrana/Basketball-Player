@@ -78,7 +78,26 @@ void BasketballPlayer::setEffRating()
 }
 void BasketballPlayer::setValue()
 {
-
+	if (efg > .70 || effRating > 20)
+	{
+		value = 10;
+	}
+	else if (efg > .65 || effRating > 15)
+	{
+		value = 9;
+	}
+	else if (efg > .60 || effRating > 13)
+	{
+		value = 8;
+	}
+	else if (efg > .55 || effRating > 10)
+	{
+		value = 7;
+	}
+	else
+	{
+		value = 0;
+	}
 }
 
 char BasketballPlayer::getPlayerType() 
@@ -128,10 +147,6 @@ float BasketballPlayer::getEffRating()
 int BasketballPlayer::getValue()
 {
 	return value;
-}
-
-void BasketballPlayer::print()
-{
 }
 
 void BasketballPlayer::print()
