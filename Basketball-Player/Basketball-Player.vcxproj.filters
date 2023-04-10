@@ -18,15 +18,27 @@
     <ClCompile Include="Basketball-Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BasketBallPlayer.cpp">
+    <ClCompile Include="BasketballPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProBasketballPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollegeBasketballPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BasketBallPlayer.h">
+    <ClInclude Include="BasketballPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Basketball-Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProBasketballPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollegeBasketballPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

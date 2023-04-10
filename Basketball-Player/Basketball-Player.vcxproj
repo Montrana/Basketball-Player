@@ -128,11 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Basketball-Player.cpp" />
-    <ClCompile Include="BasketBallPlayer.cpp" />
+    <ClCompile Include="BasketballPlayer.cpp" />
+    <ClCompile Include="CollegeBasketballPlayer.cpp" />
+    <ClCompile Include="ProBasketballPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basketball-Player.h" />
-    <ClInclude Include="BasketBallPlayer.h" />
+    <ClInclude Include="BasketballPlayer.h" />
+    <ClInclude Include="CollegeBasketballPlayer.h" />
+    <ClInclude Include="ProBasketballPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

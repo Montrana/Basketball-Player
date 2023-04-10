@@ -1,6 +1,6 @@
 #pragma once
 #include "Basketball-Player.h"
-class BasketBallPlayer
+class BasketballPlayer
 {
 protected:
 	char playerType;
@@ -16,8 +16,8 @@ protected:
 	float effRating;
 	int value;
 public:
-	BasketBallPlayer();
-	BasketBallPlayer(char playerType_, string playerName_, int games_, float efg_,
+	BasketballPlayer();
+	BasketballPlayer(char playerType_, string playerName_, int games_, float efg_,
 		int trb_, int ast_, int stl_, int blk_, int tov_, int pts_);
 
 	void setPlayerType(char playerType_);
@@ -34,7 +34,18 @@ public:
 	void setValue();
 
 	char getPlayerType();
+	string getPlayerName();
+	int getGames();
+	float getEFG();
+	int getTRB();
+	int getAST();
+	int getSTL();
+	int getBLK();
+	int getTOV();
+	int getPoints();
+	float getEffRating();
+	int getValue();
 
-	void print();
+	virtual void print();
 };
 
