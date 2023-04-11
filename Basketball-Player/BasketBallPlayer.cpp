@@ -151,6 +151,6 @@ int BasketballPlayer::getValue()
 
 void BasketballPlayer::print()
 {
-	//cout << playerName << "\t" << playerType << "\t" << pos << "\t" <<
-		//value << "\t" << effRating << "\t" << efg;
+	cout << playerName << "\t" << playerType << "\t" <<
+		value << "\t" << effRating << "\t" << efg;
 }

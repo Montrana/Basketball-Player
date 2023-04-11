@@ -27,12 +27,15 @@
     <ClCompile Include="CollegeBasketballPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasketballPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Basketball-Player.h">
+    <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProBasketballPlayer.h">

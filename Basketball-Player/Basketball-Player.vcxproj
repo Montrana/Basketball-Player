@@ -130,10 +130,11 @@
     <ClCompile Include="Basketball-Player.cpp" />
     <ClCompile Include="BasketballPlayer.cpp" />
     <ClCompile Include="CollegeBasketballPlayer.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProBasketballPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Basketball-Player.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="BasketballPlayer.h" />
     <ClInclude Include="CollegeBasketballPlayer.h" />
     <ClInclude Include="ProBasketballPlayer.h" />
