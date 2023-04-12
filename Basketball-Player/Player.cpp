@@ -37,7 +37,8 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 					stoi(playerStr[8]), playerStr[9]);
 			}
-			tempPlayer->print();
+			//tempPlayer->print();
+			players.push_back(tempPlayer);
 		}
 	}
 }
