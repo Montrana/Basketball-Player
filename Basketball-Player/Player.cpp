@@ -28,7 +28,7 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 				*tempPlayer = ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
 					stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
 					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
-					stoi(playerStr[8]), stoi(playerStr[9]), playerStr[10]);
+					stoi(playerStr[8]), stoi(playerStr[10]), playerStr[11]);
 			}
 			else if (playerStr.size() > 10)
 			{
@@ -38,8 +38,6 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 					stoi(playerStr[8]), playerStr[9]);
 			}
 			tempPlayer->print();
-
-
 		}
 	}
 }
