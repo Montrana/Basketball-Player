@@ -85,6 +85,11 @@ int ProBasketballPlayer::getContractValue()
 
 void ProBasketballPlayer::print()
 {
-    cout << playerName << "\t" << playerType << "\t" << pos << "\t" <<
-        value << "\t" << effRating << "\t" << efg << "\t" << contractValue;
+    cout << setw(25) << playerName;
+    cout << setw(4) << playerType;
+    cout << setw(4) << pos;
+    cout << setw(8) << value;
+    cout << setprecision(2) << setw(10) << effRating;
+    cout << setprecision(2) << setw(8) << efg;
+    cout << setw(10) << contractValue << endl;
 }

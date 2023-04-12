@@ -4,7 +4,7 @@
 
 int main()
 {
-    vector<BasketballPlayer *> players;
+    vector<BasketballPlayer*> players;
     readFile(players, "playerStatsPro.csv");
     //readFile(players, "playerStatsNCAA.csv");
     

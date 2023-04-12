@@ -17,7 +17,7 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 		while (getline(file, line))
 		{
 			playerStr.clear();
-			BasketballPlayer* tempPlayer = new BasketballPlayer;
+			BasketballPlayer* tempPlayer = new ProBasketballPlayer();
 			stringstream str(line);
 			while (getline(str, data, ','))
 			{
@@ -37,14 +37,9 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 					stoi(playerStr[8]), playerStr[9]);
 			}
-			else if (playerStr.size() > 9)
-			{
-				*tempPlayer = BasketballPlayer('B', playerStr[0], stoi(playerStr[1]),
-					stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
-					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
-					stoi(playerStr[8]));
-			}
-			players.push_back(tempPlayer);
+			tempPlayer->print();
+
+
 		}
 	}
 }

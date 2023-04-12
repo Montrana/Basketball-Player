@@ -94,6 +94,26 @@ void BasketballPlayer::setValue()
 	{
 		value = 7;
 	}
+	else if (efg > .55 && static_cast<float>(blk) / games > 3 &&
+		static_cast<float>(pts) / games > 10 && static_cast<float>(trb) / games > 4)
+	{
+		value = 6;
+	}
+	else if (efg > .45 && static_cast<float>(pts) / games > 10 &&
+		static_cast<float>(trb) / games > 4)
+	{
+		value = 5;
+	}
+	else if (efg > .40 && static_cast<float>(pts) / games > 5 &&
+		static_cast<float>(trb) / games > 3)
+	{
+		value = 3;
+	}
+	else if (efg > .35 && static_cast<float>(pts) / games > 5 &&
+		static_cast<float>(trb) / games > 3)
+	{
+		value = 2;
+	}
 	else
 	{
 		value = 0;
@@ -147,10 +167,4 @@ float BasketballPlayer::getEffRating()
 int BasketballPlayer::getValue()
 {
 	return value;
-}
-
-void BasketballPlayer::print()
-{
-	cout << playerName << "\t" << playerType << "\t" <<
-		value << "\t" << effRating << "\t" << efg;
 }

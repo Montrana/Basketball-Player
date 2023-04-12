@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <iomanip>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -52,6 +55,6 @@ public:
 	float getEffRating();
 	int getValue();
 
-	virtual void print();
+	virtual void print() = 0;
 };
 
