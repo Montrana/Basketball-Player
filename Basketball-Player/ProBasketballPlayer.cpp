@@ -2,7 +2,7 @@
 ProBasketballPlayer::ProBasketballPlayer():BasketballPlayer()
 {
     years = 0;
-    pos = "unknown";
+    pos = "Unknown";
     contractValue = 0;
 }
 ProBasketballPlayer::ProBasketballPlayer(char playerType_,
@@ -19,7 +19,7 @@ ProBasketballPlayer::ProBasketballPlayer(char playerType_,
     {
         years = 0;
     }
-    pos = pos_;
+    pos = pos_.back();
     setContractValue();
 }
 

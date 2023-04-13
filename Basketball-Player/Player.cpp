@@ -17,7 +17,8 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 		while (getline(file, line))
 		{
 			playerStr.clear();
-			BasketballPlayer* tempPlayer = new ProBasketballPlayer();
+			ProBasketballPlayer* tempPro = new ProBasketballPlayer();
+			CollegeBasketballPlayer* tempCollege = new CollegeBasketballPlayer();
 			stringstream str(line);
 			while (getline(str, data, ','))
 			{
@@ -25,20 +26,63 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 			}
 			if (playerStr.size() > 11)
 			{
-				*tempPlayer = ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
+				*tempPro = ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
 					stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
 					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 					stoi(playerStr[8]), stoi(playerStr[10]), playerStr[11]);
+				players.push_back(tempPro);
 			}
-			else if (playerStr.size() > 10)
+			else if (playerStr.size() > 9)
 			{
-				*tempPlayer = CollegeBasketballPlayer('C', playerStr[0], stoi(playerStr[1]),
-					stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
-					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
-					stoi(playerStr[8]), playerStr[9]);
+				try {
+					*tempCollege = CollegeBasketballPlayer('C', playerStr[0], stoi(playerStr[1]),
+						stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
+						stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
+						stoi(playerStr[8]), playerStr[9]);
+					players.push_back(tempCollege);
+				}
+				catch (...)
+				{
+					cout << playerStr[0] << " NCAA Player : Invalid stoi argument\n";
+				}
 			}
 			//tempPlayer->print();
-			players.push_back(tempPlayer);
+			
 		}
 	}
+	else
+	{
+		cout << "unable to open file " << fname << endl;
+	}
+}
+
+void allNCAA(vector<BasketballPlayer*> players)
+{
+	int playerNum = 0;
+	vector<int> includedPlayers;
+	while (playerNum < 12)
+	{
+		int highestVal;
+		for (int i = 0; i < players.size(); i++)
+		{
+			if ((players.at(i)->getValue() > players.at(i)->getValue() || i == 0) 
+				&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
+			{
+				highestVal = i;
+				includedPlayers.push_back(i);
+			}
+		}
+		players.at(highestVal)->print();
+		playerNum++;
+	}
+}
+
+void mixNCAAandPro(vector<BasketballPlayer*> players)
+{
+
+}
+
+void allPro(vector<BasketballPlayer*> players)
+{
+
 }
