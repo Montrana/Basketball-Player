@@ -17,6 +17,7 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 		while (getline(file, line))
 		{
 			playerStr.clear();
+			BasketballPlayer* tempPlayer = nullptr;
 			ProBasketballPlayer* tempPro = new ProBasketballPlayer();
 			CollegeBasketballPlayer* tempCollege = new CollegeBasketballPlayer();
 			stringstream str(line);
@@ -26,20 +27,20 @@ void readFile(vector<BasketballPlayer*>& players, string fname)
 			}
 			if (playerStr.size() > 11)
 			{
-				*tempPro = ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
+				tempPlayer = new ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
 					stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
 					stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 					stoi(playerStr[8]), stoi(playerStr[10]), playerStr[11]);
-				players.push_back(tempPro);
+				players.push_back(tempPlayer);
 			}
 			else if (playerStr.size() > 9)
 			{
 				try {
-					*tempCollege = CollegeBasketballPlayer('C', playerStr[0], stoi(playerStr[1]),
+					tempPlayer = new CollegeBasketballPlayer('C', playerStr[0], stoi(playerStr[1]),
 						stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
 						stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 						stoi(playerStr[8]), playerStr[9]);
-					players.push_back(tempCollege);
+					players.push_back(tempPlayer);
 				}
 				catch (...)
 				{
@@ -62,11 +63,12 @@ void allNCAA(vector<BasketballPlayer*> players)
 	vector<int> includedPlayers;
 	while (playerNum < 12)
 	{
-		int highestVal;
+		int highestVal = 0;
 		for (int i = 0; i < players.size(); i++)
 		{
-			if ((players.at(i)->getValue() > players.at(i)->getValue() || i == 0) 
-				&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
+			if ((players.at(i)->getValue() > players.at(highestVal)->getValue() || i == 0) 
+				&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end()
+				&& players.at(i)->getPlayerType() == 'C')
 			{
 				highestVal = i;
 				includedPlayers.push_back(i);
