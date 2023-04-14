@@ -22,9 +22,9 @@ string CollegeBasketballPlayer::getTeam()
 
 void CollegeBasketballPlayer::print()
 {
-    cout << setw(22) << playerName;
+    cout << setw(24) << playerName;
     cout << setw(6) << playerType;
-    cout << setw(16) << value;
+    cout << setw(24) << value;
     cout << setprecision(2) << setw(12) << effRating;
     cout << setprecision(2) << setw(12) << efg << endl;
 }

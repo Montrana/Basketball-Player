@@ -11,10 +11,11 @@ using namespace std;
 
 void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout);
 
-void allNCAA(vector<BasketballPlayer*> players);
+void allNCAA(vector<BasketballPlayer*> players, int teamSize);
 
 void mixNCAAandPro(vector<BasketballPlayer*> players);
 
 void allPro(vector<BasketballPlayer*> players);
 
-void searchPosition(vector<BasketballPlayer*> players, string pos);
+int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal, int teamSalary);
+void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal);

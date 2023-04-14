@@ -77,3 +77,5 @@
         Trayvon Palmer     Pro Player   :	nsufficient game count: 
             Tyler Hall     Pro Player   :	nsufficient game count: 
           Wayne Selden     Pro Player   :	ufficient game count: 
+     "Terrence Shannon    NCAA Player   :	invalid stoi argument
+        "David Jenkins    NCAA Player   :	invalid stoi argument
