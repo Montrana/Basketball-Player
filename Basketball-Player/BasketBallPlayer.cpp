@@ -74,7 +74,14 @@ void BasketballPlayer::setPoints(int pts_)
 }
 void BasketballPlayer::setEffRating()
 {
-	effRating = (pts + trb + ast + stl + blk - (pts / efg - pts + tov)) / games;
+	if (games > 5)
+	{
+		effRating = (pts + trb + ast + stl + blk - (pts / efg - pts + tov)) / games;
+	}
+	else
+	{
+		throw runtime_error("Insufficient game count: " + games);
+	}
 }
 void BasketballPlayer::setValue()
 {

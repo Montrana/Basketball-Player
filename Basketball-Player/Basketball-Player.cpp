@@ -5,15 +5,16 @@
 int main()
 {
     vector<BasketballPlayer*> players;
-    readFile(players, "playerStatsPro.csv");
-    readFile(players, "playerStatsNCAA.csv");
+
+    ofstream fout("errorOutput.txt");
+    readFile(players, "playerStatsPro.csv", fout);
+    readFile(players, "playerStatsNCAA.csv", fout);
     
-    for (int i = 0; i < players.size(); i++)
-    {
-        players.at(i)->print();
-    }
+    fout.close();
+
     cout << endl;
     allNCAA(players);
+    mixNCAAandPro(players);
 }
 
 
