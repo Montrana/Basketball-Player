@@ -20,6 +20,7 @@ int main()
     cout << setw(12) << "EFG Rating" << endl;
     allNCAA(players, 12);
     cout << endl;
+
     cout << "NCAA and Pro Team List" << endl;
     cout << setw(24) << "Player Name";
     cout << setw(6) << "Type";
@@ -29,8 +30,8 @@ int main()
     cout << setw(12) << "EFG Rating";
     cout << setw(16) << "Contract Value" << endl;
     mixNCAAandPro(players);
-
     cout << endl;
+
     cout << "All Pro Team List" << endl;
     cout << setw(24) << "Player Name";
     cout << setw(6) << "Type";

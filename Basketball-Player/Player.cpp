@@ -1,16 +1,16 @@
 #include "Player.h"
 
 /// <summary>
-/// 
+/// Reads a file of players
 /// https://java2blog.com/read-csv-file-in-cpp/#:~:text=To%20read%20a%20CSV%20file%2C,variable%20as%20its%20second%20argument.
 /// </summary>
-/// <param name="players"></param>
-/// <param name="filename"></param>
+/// <param name="players">the vector of players to store the data in</param>
+/// <param name="filename">the filename of the file</param>
 void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout)
 {
 	string line, data;
 	vector<string> playerStr;
-	fstream file(fname, ios::in);
+	fstream file(fname);
 	if (file.is_open())
 	{
 		getline(file, line);
@@ -27,14 +27,14 @@ void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout)
 			}
 			try
 			{
-				if (playerStr.size() > 11)
+				if (playerStr.size() > 11) // checks if it's a college player
 				{
 					tempPlayer = new ProBasketballPlayer('P', playerStr[0], stoi(playerStr[1]),
 						stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
 						stoi(playerStr[5]), stoi(playerStr[6]), stoi(playerStr[7]),
 						stoi(playerStr[8]), stoi(playerStr[10]), playerStr[11]);
 				}
-				else if (playerStr.size() > 9)
+				else if (playerStr.size() > 9) // checks if player is a College player
 				{
 					tempPlayer = new CollegeBasketballPlayer('C', playerStr[0], stoi(playerStr[1]),
 						stof(playerStr[2]), stoi(playerStr[3]), stoi(playerStr[4]),
@@ -45,13 +45,13 @@ void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout)
 			}
 			catch (runtime_error err)
 			{
-				if (playerStr.size() > 11)
+				if (playerStr.size() > 11) // checks if it's a college player
 				{
 					fout << setw(22) << playerStr[0];
 					fout << setw(15) << "Pro Player";
 					fout << setw(5) << ":\t" << setw(20) << err.what() << endl;
 				}
-				else if (playerStr.size() > 9)
+				else if (playerStr.size() > 9) // checks if player is a College player
 				{
 					fout << setw(22) << playerStr[0];
 					fout << setw(15) << "NCAA Player";
@@ -60,20 +60,19 @@ void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout)
 			}
 			catch (invalid_argument invalid)
 			{
-				if (playerStr.size() > 11)
+				if (playerStr.size() > 11) // checks if it's a college player
 				{
 					fout << setw(22) << playerStr[0];
 					fout << setw(15) << "Pro Player";
 					fout << setw(5) << ":\t" << setw(20) << invalid.what() << endl;
 				}
-				else if (playerStr.size() > 9)
+				else if (playerStr.size() > 9) // checks if player is a College player
 				{
 					fout << setw(22) << playerStr[0];
 					fout << setw(15) << "NCAA Player";
 					fout << setw(5) << ":\t" << setw(20) << invalid.what() << endl;
 				}
 			}
-			//tempPlayer->print();
 		}
 	}
 	else
@@ -83,10 +82,10 @@ void readFile(vector<BasketballPlayer*>& players, string fname, ofstream &fout)
 }
 
 /// <summary>
-/// 
+/// creates an All NCAA team
 /// </summary>
-/// <param name="players"></param>
-/// <param name="teamSize"></param>
+/// <param name="players">the list of players to search for</param>
+/// <param name="teamSize">the size of the team</param>
 void allNCAA(vector<BasketballPlayer*> players, int teamSize)
 {
 	
@@ -126,9 +125,9 @@ void allNCAA(vector<BasketballPlayer*> players, int teamSize)
 }
 
 /// <summary>
-/// 
+/// creates a team with a mix of NCAA players an pro players
 /// </summary>
-/// <param name="players"></param>
+/// <param name="players">the list of players to search for</param>
 void mixNCAAandPro(vector<BasketballPlayer*> players)
 {
 	
@@ -139,9 +138,9 @@ void mixNCAAandPro(vector<BasketballPlayer*> players)
 }
 
 /// <summary>
-/// 
+/// Composes an all pro team
 /// </summary>
-/// <param name="players"></param>
+/// <param name="players">the list of players to search for</param>
 void allPro(vector<BasketballPlayer*> players)
 {
 	int contractVal = 0;
@@ -162,14 +161,14 @@ void allPro(vector<BasketballPlayer*> players)
 }
 
 /// <summary>
-/// 
+/// Search for players at the given position and prints them
 /// </summary>
-/// <param name="players"></param>
-/// <param name="pos"></param>
-/// <param name="maxPlayers"></param>
-/// <param name="maxVal"></param>
-/// <param name="teamSalary"></param>
-/// <returns></returns>
+/// <param name="players">the list of players to search through</param>
+/// <param name="pos">the position to look for</param>
+/// <param name="maxPlayers">the amount of players that will be found</param>
+/// <param name="maxVal">the max allotted value of a player</param>
+/// <param name="teamSalary">the current team salary</param>
+/// <returns>how much got added to the team salary</returns>
 int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal, int teamSalary)
 {
 	int playerNum = 0;
@@ -180,15 +179,19 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 		int highestVal = 0;
 		for (int i = 0; i < players.size(); i++)
 		{
+			//if the player is a pro and the players value is lower than the max value
 			if (players.at(i)->getPlayerType() == 'P' && players.at(i)->getValue() <= maxVal)
 			{
+				// if the player's position is the position we are searching for and the player we are looking at isn't already in the included players
 				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos
 					&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
 				{
+					// if player at I's value is higher than the value at the current tracked highest value
 					if (players.at(i)->getValue() > players.at(highestVal)->getValue())
 					{
 						highestVal = i;
 					}
+					// if player at I's value is higher than the value at the current tracked highest value
 					else if (players.at(i)->getValue() == players.at(highestVal)->getValue())
 					{
 						if (players.at(i)->getEffRating() > players.at(highestVal)->getEffRating())
@@ -196,6 +199,7 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 							highestVal = i;
 						}
 					}
+					// if player at the highest value is higher than the max value.
 					else if (players.at(highestVal)->getValue() > maxVal)
 					{
 						highestVal = i;
@@ -219,12 +223,12 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 }
 
 /// <summary>
-/// 
+/// Search for players at the given position and prints them
 /// </summary>
-/// <param name="players"></param>
-/// <param name="pos"></param>
-/// <param name="maxPlayers"></param>
-/// <param name="maxVal"></param>
+/// <param name="players">the list of players to search through</param>
+/// <param name="pos">the position to look for</param>
+/// <param name="maxPlayers">the amount of players that will be found</param>
+/// <param name="maxVal">the max allotted value of a player</param>
 void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal)
 {
 	int playerNum = 0;
@@ -234,17 +238,19 @@ void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayer
 		int highestVal = 0;
 		for (int i = 0; i < players.size(); i++)
 		{
-			//if the player is a pro and the players value is lower than the max value:
+			//if the player is a pro and the players value is lower than the max value
 			if (players.at(i)->getPlayerType() == 'P' && players.at(i)->getValue() <= maxVal)
 			{
-				//If the player's position is the position we are searching for and the player we are looking at isn't already in the included players
+				// if the player's position is the position we are searching for and the player we are looking at isn't already in the included players
 				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos
 					&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
 				{
+					// if player at I's value is higher than the value at the current tracked highest value
 					if (players.at(i)->getValue() > players.at(highestVal)->getValue())
 					{
 						highestVal = i;
 					}
+					// if player at I's value is higher than the value at the current tracked highest value
 					else if (players.at(i)->getValue() == players.at(highestVal)->getValue())
 					{
 						if (players.at(i)->getEffRating() > players.at(highestVal)->getEffRating())
@@ -252,6 +258,7 @@ void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayer
 							highestVal = i;
 						}
 					}
+					// if player at the highest value is higher than the max value.
 					else if (players.at(highestVal)->getValue() > maxVal)
 					{
 						highestVal = i;
