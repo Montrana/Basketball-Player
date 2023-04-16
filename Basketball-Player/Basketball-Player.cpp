@@ -1,7 +1,17 @@
-// Basketball-Player.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/// Basketball-Player.cpp : This file contains the 'main' function. Program execution begins and ends there.
+/// Name: Montana Nicholson
+/// Date: April 5th, 2023
+/// Summary: This project reads in two csvs, one for pro players, and the other for college players.
+/// It takes the data from those CSVs, and makes a team that is the best NCAA players,
+/// best players from both the NCAA and Pro teams, with 2 players in each position for the pros,
+/// and a well rounded Pro team that takes into account salary cap.
+
 #include "Player.h"
 
+/// <summary>
+/// Reads both files, manages output and creates three teams
+/// </summary>
+/// <returns>an exit int</returns>
 int main()
 {
     vector<BasketballPlayer*> players;
