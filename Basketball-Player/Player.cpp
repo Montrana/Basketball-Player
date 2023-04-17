@@ -131,9 +131,9 @@ void allNCAA(vector<BasketballPlayer*> players, int teamSize)
 /// <param name="players">the list of players to search for</param>
 void mixNCAAandPro(vector<BasketballPlayer*> players)
 {
-	searchPosition(players, "C", 2, 10);
-	searchPosition(players, "F", 2, 10);
-	searchPosition(players, "G", 2, 10);
+	searchPosition(players, "C", 2);
+	searchPosition(players, "F", 2);
+	searchPosition(players, "G", 2);
 	allNCAA(players, 6);
 }
 
@@ -143,21 +143,21 @@ void mixNCAAandPro(vector<BasketballPlayer*> players)
 /// <param name="players">the list of players to search for</param>
 void allPro(vector<BasketballPlayer*> players)
 {
-	int contractVal = 0;
-	contractVal += searchPosition(players, "C", 1, 10, contractVal);
-	contractVal += searchPosition(players, "F", 2, 10, contractVal);
-	contractVal += searchPosition(players, "G", 2, 10, contractVal);
+	int teamSalary = 0;
+	teamSalary += searchPosition(players, "C", 1, 10, teamSalary);
+	teamSalary += searchPosition(players, "F", 2, 10, teamSalary);
+	teamSalary += searchPosition(players, "G", 2, 10, teamSalary);
 
-	contractVal += searchPosition(players, "C", 1, 8, contractVal);
+	teamSalary += searchPosition(players, "C", 1, 8, teamSalary);
 
-	contractVal += searchPosition(players, "F", 1, 8, contractVal);
-	contractVal += searchPosition(players, "G", 1, 8, contractVal);
+	teamSalary += searchPosition(players, "F", 1, 8, teamSalary);
+	teamSalary += searchPosition(players, "G", 1, 8, teamSalary);
 
-	contractVal += searchPosition(players, "G", 2, 5, contractVal);
-	contractVal += searchPosition(players, "F", 2, 5, contractVal);
+	teamSalary += searchPosition(players, "G", 2, 5, teamSalary);
+	teamSalary += searchPosition(players, "F", 2, 5, teamSalary);
 
 	cout << "Total Pay:";
-	cout << setw(84) << contractVal << endl;
+	cout << setw(84) << teamSalary << endl;
 }
 
 /// <summary>
@@ -178,12 +178,13 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 		int highestVal = 0;
 		for (int i = 0; i < players.size(); i++)
 		{
-			//if the player is a pro and the players value is lower than the max value
-			if (players.at(i)->getPlayerType() == 'P' && players.at(i)->getValue() <= maxVal)
+			//if the player is a pro and the players value is lower than the max value 
+			//and the player we are looking at isn't already in the included players
+			if (players.at(i)->getPlayerType() == 'P' && players.at(i)->getValue() <= maxVal
+				&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
 			{
-				// if the player's position is the position we are searching for and the player we are looking at isn't already in the included players
-				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos
-					&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
+				// if the player's position is the position we are searching for 
+				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos)
 				{
 					// if player at I's value is higher than the value at the current tracked highest value
 					if (players.at(i)->getValue() > players.at(highestVal)->getValue())
@@ -198,14 +199,15 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 							highestVal = i;
 						}
 					}
-					// if player at the highest value is higher than the max value.
-					else if (players.at(highestVal)->getValue() > maxVal)
+					// if player at the highest value is higher than the max value or player at highest val isn't a pro player
+					else if (players.at(highestVal)->getValue() > maxVal || players.at(highestVal)->getPlayerType() != 'P')
 					{
 						highestVal = i;
 					}
 				}
 			}
 		}
+		// if contract value + contract value of player at highest val + team salary is lower than the salary cap
 		if (contractVal + dynamic_cast<ProBasketballPlayer*>(players.at(highestVal))->getContractValue() + teamSalary < 98000000)
 		{
 			includedPlayers.push_back(highestVal);
@@ -226,8 +228,7 @@ int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers
 /// <param name="players">the list of players to search through</param>
 /// <param name="pos">the position to look for</param>
 /// <param name="maxPlayers">the amount of players that will be found</param>
-/// <param name="maxVal">the max allotted value of a player</param>
-void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal)
+void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers)
 {
 	vector<int> includedPlayers;
 	while (includedPlayers.size() < maxPlayers)
@@ -235,12 +236,12 @@ void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayer
 		int highestVal = 0;
 		for (int i = 0; i < players.size(); i++)
 		{
-			//if the player is a pro and the players value is lower than the max value
-			if (players.at(i)->getPlayerType() == 'P' && players.at(i)->getValue() <= maxVal)
+			//if the player is a pro and the players value is lower than the max value and the player we are looking at isn't already in the included players
+			if (players.at(i)->getPlayerType() == 'P' && 
+				find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
 			{
-				// if the player's position is the position we are searching for and the player we are looking at isn't already in the included players
-				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos
-					&& find(includedPlayers.begin(), includedPlayers.end(), i) == includedPlayers.end())
+				// if the player's position is the position we are searching for 
+				if (dynamic_cast<ProBasketballPlayer*>(players.at(i))->getPosition() == pos)
 				{
 					// if player at I's value is higher than the value at the current tracked highest value
 					if (players.at(i)->getValue() > players.at(highestVal)->getValue())
@@ -255,8 +256,8 @@ void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayer
 							highestVal = i;
 						}
 					}
-					// if player at the highest value is higher than the max value.
-					else if (players.at(highestVal)->getValue() > maxVal)
+					// if player at highest val isn't a pro player
+					else if (players.at(highestVal)->getPlayerType() != 'P')
 					{
 						highestVal = i;
 					}

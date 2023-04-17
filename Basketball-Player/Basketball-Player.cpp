@@ -52,5 +52,3 @@ int main()
     cout << setw(16) << "Contract Value" << endl;
     allPro(players);
 }
-
-

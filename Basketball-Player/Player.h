@@ -19,4 +19,4 @@ void mixNCAAandPro(vector<BasketballPlayer*> players);
 void allPro(vector<BasketballPlayer*> players);
 
 int searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal, int teamSalary);
-void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers, int maxVal);
+void searchPosition(vector<BasketballPlayer*> players, string pos, int maxPlayers);
